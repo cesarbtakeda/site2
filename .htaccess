@@ -1,0 +1,67 @@
+# ========================================
+# .htaccess - Hostinger (Shared)
+# Remove Banner Grabbing + Routing Seguro
+# ========================================
+
+# 1. ATIVA REWRITE
+RewriteEngine On
+
+# 2. REMOVE HEADERS DE INFORMAÇÃO (Banner Grabbing)
+# Remove Server signature
+ServerSignature Off
+
+# Remove X-Powered-By (PHP version)
+<IfModule mod_headers.c>
+    Header unset X-Powered-By
+    Header unset Server
+    Header unset X-AspNet-Version
+    Header unset X-AspNetMvc-Version
+</IfModule>
+
+# 3. SEGURANÇA EXTRA: Headers de Proteção
+<IfModule mod_headers.c>
+    # Protege contra clickjacking
+    Header always set X-Frame-Options "DENY"
+    
+    # Bloqueia MIME sniffing
+    Header always set X-Content-Type-Options "nosniff"
+    
+    # Habilita XSS Protection (legacy, mas bom)
+    Header always set X-XSS-Protection "1; mode=block"
+    
+    # Remove ETag (reduz fingerprinting)
+    Header unset ETag
+</IfModule>
+
+# 4. DESATIVA ServerSignature no error pages
+ServerSignature Off
+
+# 5. REMOVE ETag do sistema de arquivos (mais segurança)
+FileETag None
+
+# 6. ROUTING: Envia tudo para index.php (exceto arquivos reais)
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)$ index.php?path=$1 [QSA,L]
+
+# 7. CACHE PARA ARQUIVOS ESTÁTICOS (opcional, mas recomendado)
+<IfModule mod_expires.c>
+    ExpiresActive On
+    ExpiresByType text/plain "access plus 1 month"
+    ExpiresByType text/css "access plus 1 month"
+    ExpiresByType application/javascript "access plus 1 month"
+    ExpiresByType image/png "access plus 1 month"
+    ExpiresByType image/jpg "access plus 1 month"
+    ExpiresByType image/jpeg "access plus 1 month"
+</IfModule>
+
+# 8. BLOQUEIA ACESSO A ARQUIVOS SENSÍVEIS
+<Files ~ "\.(env|ini|log|conf|bak)$">
+    Order allow,deny
+    Deny from all
+</Files>
+
+<Files ".htaccess">
+    Order allow,deny
+    Deny from all
+</Files>
