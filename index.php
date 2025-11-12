@@ -231,10 +231,11 @@ if (!in_array($request_uri, $rotas_validas)) {
             font-family: 'Roboto Mono', monospace;
             line-height: 1.6;
         }
+        /* ESTILO DO [ver cert] SEM SUBLINHADO */
         .cert-link {
             color: var(--neon-pink) !important;
             font-weight: bold;
-            text-decoration: underline;
+            text-decoration: none !important; /* REMOVIDO O SUBLINHADO */
             cursor: pointer;
             transition: all 0.3s;
         }
@@ -358,7 +359,7 @@ if (!in_array($request_uri, $rotas_validas)) {
         }
         loadAscii();
 
-        // TODOS OS MODAIS (com certificações em array)
+        // TODOS OS MODAIS
         const modalData = {
             skill1: { title: "Bancos de Dados", content: "> MySQL\n> PostgreSQL\n> MongoDB\n> SQLite\n> Redis\n\n> Proficiência em design e otimização de BD relacionais e NoSQL." },
             skill2: { title: "Sistemas Operacionais", content: "> Debian 12\n> Kali Linux (WSL)\n> Arch Linux\n> BlackArch Linux\n> Windows 11 + WSL\n\n> Experiência em configuração, hardening e troubleshooting." },
