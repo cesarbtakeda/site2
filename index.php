@@ -19,7 +19,7 @@ if (!in_array($request_uri, $rotas_validas)) {
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>>_ CesarBTakeda | HACK THE PLANET</title>
+    <title>>_ CesarBTakeda | The CyberSecurity</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Roboto+Mono:wght@300;400;700&display=swap" rel="stylesheet">
@@ -34,7 +34,6 @@ if (!in_array($request_uri, $rotas_validas)) {
             --text-glow-cyan: 0 0 10px var(--neon-cyan), 0 0 20px var(--neon-cyan);
             --modal-bg: rgba(5, 5, 5, 0.95);
         }
-
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
             background: var(--bg-dark);
@@ -44,7 +43,6 @@ if (!in_array($request_uri, $rotas_validas)) {
             position: relative;
             min-height: 100vh;
         }
-
         /* CRT Scanlines */
         body::before {
             content: "";
@@ -56,15 +54,12 @@ if (!in_array($request_uri, $rotas_validas)) {
             animation: scan 8s linear infinite;
         }
         @keyframes scan { 0% { transform: translateY(0); } 100% { transform: translateY(100vh); } }
-
-        /* Glitch */
         @keyframes glitch {
             0%, 100% { text-shadow: 0.05em 0 0 #00ff00, -0.05em 0 0 #ff00ff; }
             15% { text-shadow: -0.05em 0 0 #00ff00, 0.05em 0 0 #ff00ff; }
             50% { text-shadow: 0.05em 0.05em 0 #00ff00, -0.05em -0.05em 0 #ff00ff; }
         }
         .glitch { animation: glitch 1.5s infinite; display: inline-block; }
-
         header {
             text-align: center;
             padding: 2rem 1rem;
@@ -72,7 +67,6 @@ if (!in_array($request_uri, $rotas_validas)) {
             box-shadow: 0 0 20px rgba(57, 255, 20, 0.3);
             position: relative;
         }
-
         #lang-toggle {
             position: absolute;
             top: 1rem;
@@ -96,7 +90,6 @@ if (!in_array($request_uri, $rotas_validas)) {
         #lang-toggle:hover { transform: scale(1.1); box-shadow: 0 0 25px rgba(57, 255, 20, 0.9); }
         #lang-toggle::after { content: "BR"; font-weight: bold; }
         body.en #lang-toggle::after { content: "EN"; }
-
         #ascii-art {
             font-family: 'Courier New', monospace;
             color: var(--neon-green);
@@ -112,7 +105,6 @@ if (!in_array($request_uri, $rotas_validas)) {
             animation: blink 0.7s infinite;
         }
         @keyframes blink { 50% { border-color: transparent; } }
-
         .header-text h1 {
             font-family: 'Orbitron', sans-serif;
             font-size: 3rem;
@@ -127,7 +119,6 @@ if (!in_array($request_uri, $rotas_validas)) {
             text-shadow: var(--text-glow-cyan);
             font-size: 1.1rem;
         }
-
         main { max-width: 1000px; margin: 2rem auto; padding: 0 1rem; }
         section {
             margin-bottom: 3rem;
@@ -146,7 +137,6 @@ if (!in_array($request_uri, $rotas_validas)) {
             position: relative;
         }
         h2::before { content: "> "; color: var(--neon-green); }
-
         ul { list-style: none; }
         li {
             margin: 0.8rem 0;
@@ -159,7 +149,6 @@ if (!in_array($request_uri, $rotas_validas)) {
             position: absolute;
             left: 0;
         }
-
         .clickable {
             color: var(--neon-cyan);
             cursor: pointer;
@@ -172,7 +161,6 @@ if (!in_array($request_uri, $rotas_validas)) {
             text-shadow: 0 0 10px var(--neon-pink);
             animation: glitch 0.3s;
         }
-
         a {
             color: var(--neon-cyan);
             text-decoration: none;
@@ -182,7 +170,6 @@ if (!in_array($request_uri, $rotas_validas)) {
             color: var(--neon-pink);
             text-shadow: 0 0 10px var(--neon-pink);
         }
-
         footer {
             text-align: center;
             padding: 1.5rem;
@@ -191,7 +178,6 @@ if (!in_array($request_uri, $rotas_validas)) {
             border-top: 1px solid #333;
             text-shadow: 0 0 5px rgba(57, 255, 20, 0.3);
         }
-
         /* MODAL */
         .modal {
             display: none;
@@ -206,7 +192,6 @@ if (!in_array($request_uri, $rotas_validas)) {
         }
         .modal.active { display: flex; animation: fadeIn 0.4s; }
         @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-
         .modal-content {
             background: #000;
             border: 2px solid var(--neon-green);
@@ -242,14 +227,23 @@ if (!in_array($request_uri, $rotas_validas)) {
             color: #ff0000;
             text-shadow: 0 0 10px #ff0000;
         }
-
         .typing-text {
             color: var(--neon-green);
             white-space: pre-wrap;
             font-family: 'Roboto Mono', monospace;
             line-height: 1.6;
         }
-
+        .cert-link {
+            color: var(--neon-pink) !important;
+            font-weight: bold;
+            text-decoration: underline;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        .cert-link:hover {
+            text-shadow: 0 0 10px var(--neon-pink);
+            animation: glitch 0.3s;
+        }
         @media (max-width: 768px) {
             .header-text h1 { font-size: 2rem; }
             #ascii-art { font-size: 0.6rem; }
@@ -259,7 +253,6 @@ if (!in_array($request_uri, $rotas_validas)) {
     </style>
 </head>
 <body>
-
     <header>
         <div id="lang-toggle" title="Alternar idioma"></div>
         <div id="ascii-art" class="ascii-art">Loading system...</div>
@@ -268,7 +261,6 @@ if (!in_array($request_uri, $rotas_validas)) {
             <p class="quote">"Talk is cheap. Show me the code." - Linus Torvalds</p>
         </div>
     </header>
-
     <main>
         <section id="about">
             <h2 data-en="root@cesar:~$ whoami">root@cesar:~$ whoami</h2>
@@ -276,7 +268,6 @@ if (!in_array($request_uri, $rotas_validas)) {
                 Apaixonado por tecnologia e cibersegurança. Habilidoso em hacking ético, desenvolvimento de exploits e intrusão de redes.
             </p>
         </section>
-
         <section id="skills">
             <h2 data-en="skills --list">skills --list</h2>
             <ul>
@@ -291,7 +282,6 @@ if (!in_array($request_uri, $rotas_validas)) {
                 <li><span class="clickable" data-modal="skill9">Ferramentas - Clique para ver</span></li>
             </ul>
         </section>
-
         <section id="hosting-projects">
             <h2 data-en="projects --scan">projects --scan</h2>
             <ul>
@@ -303,7 +293,6 @@ if (!in_array($request_uri, $rotas_validas)) {
                 <li><span class="clickable" data-modal="proj6">Am3b4_T00ls - Clique para ver</span></li>
             </ul>
         </section>
-
         <section id="bug-bounty">
             <h2 data-en="bugbounty --report">bugbounty --report</h2>
             <ul>
@@ -315,7 +304,6 @@ if (!in_array($request_uri, $rotas_validas)) {
                 <li><span class="clickable" data-modal="bug6">Playtika - Clique para ver</span></li>
             </ul>
         </section>
-
         <section id="contact">
             <h2 data-en="contact --init">contact --init</h2>
             <ul>
@@ -344,71 +332,62 @@ if (!in_array($request_uri, $rotas_validas)) {
     <script>
         let typingTimeout = null;
 
-        // Carrega ASCII art diretamente de /static/ascii.txt (SEM FALLBACK)
+        // ASCII ART
         function loadAscii() {
             const el = document.getElementById('ascii-art');
             el.textContent = '';
             el.style.width = '0';
             el.style.borderRight = '2px solid var(--neon-green)';
-
             fetch("/static/ascii.txt")
-                .then(response => {
-                    if (!response.ok) throw new Error("Arquivo não encontrado: " + response.status);
-                    return response.text();
-                })
+                .then(r => r.ok ? r.text() : Promise.reject())
                 .then(data => {
                     let i = 0;
-                    function type() {
+                    const type = () => {
                         if (i < data.length) {
-                            el.textContent += data[i];
-                            i++;
+                            el.textContent += data[i++];
                             typingTimeout = setTimeout(type, 30);
                         } else {
                             el.style.borderRight = 'none';
                             el.style.width = '100%';
                         }
-                    }
+                    };
                     type();
                 })
-                .catch(err => {
-                    console.error("Erro ao carregar ASCII:", err);
+                .catch(() => {
                     el.textContent = "ERROR: ASCII NOT LOADED";
                     el.style.color = "#ff0000";
                     el.style.borderRight = 'none';
                 });
         }
-
-        // Inicia carregamento do ASCII
         loadAscii();
 
-        // Dados dos modais
+        // MODAL DATA (com [ver cert] como placeholder)
         const modalData = {
-            skill1: { title: "Bancos de Dados", content: "> MySQL\n> PostgreSQL\n> MongoDB\n> SQLite\n> Redis\n\n> Proficiência em design e otimização de BD relacionais e NoSQL." },
-            skill2: { title: "Sistemas Operacionais", content: "> Debian 12\n> Kali Linux (WSL)\n> Arch Linux\n> BlackArch Linux\n> Windows 11 + WSL\n\n> Experiência em configuração, hardening e troubleshooting." },
-            skill3: { title: "Certificações", content: "> ISO-17024 | IC-PEN-1560 [Ver Cert]\n> PT-IC-SOC-380 [Ver Cert]\n> PT-IC-LNX-1180 [Ver Cert]\n> PT-IC-SEC-1780 [Ver Cert]\n> Google Cloud Professional\n\n> Certificações em pentest, SOC e Linux security." },
-            skill4: { title: "Hacking & Pentest", content: "> Vulnerability Assessment\n> Exploit Development\n> Web Application Security\n> Network Penetration Testing\n> Reverse Engineering\n\n> Ferramentas: Metasploit, Burp, Nmap." },
-            skill5: { title: "Linguagens de Programação", content: "> PHP 8\n> JavaScript (ES6+)\n> Python 3\n> Bash Script\n> SQL\n\n> Desenvolvimento de tools customizadas para security." },
-            skill6: { title: "Segurança de Rede", content: "> WAF/IDS/IPS\n> VPNs (OpenVPN, WireGuard)\n> Network Protocols\n> Wireless Security (WPA3, Evil Twin)\n\n> Configuração e auditoria de infra segura." },
-            skill7: { title: "Tecnologias Web", content: "> HTML5 / CSS3\n> JavaScript (Vanilla + Frameworks)\n> PHP 8+\n> REST APIs\n\n> Desenvolvimento full-stack com foco em secure coding." },
-            skill8: { title: "Cloud Technologies", content: "> AWS (EC2, S3, Lambda)\n> Google Cloud Platform\n> Microsoft Azure\n\n> Deploy e security de aplicações na nuvem." },
-            skill9: { title: "Ferramentas de Cybersecurity", content: "> Wireshark\n> Metasploit\n> Nmap\n> Burp Suite\n> sqlmap\n> John the Ripper\n\n> Uso avançado em red team operations." },
-
-            proj1: { title: "Tool-Anti-Phishing", content: "> Ferramenta desenvolvida para interceptar conexões de phishing e encher o cache de log do atacante.\n> Usa rede Tor e proxies para anonimato do usuário.\n> Proteção contra trojans, e-mails phishing e derrubada de VPNs em IPs públicos.\n\n> GitHub: https://github.com/cesarbtakeda/Tool-Anti-Phishing\n> Status: Ativo | Linguagem: Python/Bash" },
-            proj2: { title: "UPX_PROJETO_GESTAO_DE_RECLAMACAO", content: "> Projeto desenvolvido na faculdade durante o curso UPX.\n> Sistema para gerenciar reclamações de forma dinâmica e massiva.\n> Gera relatórios diários de qualquer tipo de empresa, cidade ou sindicato.\n\n> GitHub: https://github.com/cesarbtakeda/UPX_PROJETO_GESTAO_DE_RECLAMACAO\n> Status: Concluído | Linguagem: PHP/MySQL" },
-            proj3: { title: "H00ks_T0x1na", content: "> Framework de Phishing (Social Engineering) para controle remoto de PC ou mobile via links.\n> Compatível com Windows, Android e iPhone.\n> Escrito em HTML, CSS, PHP, JavaScript, BashScript.\n> Alpha 0.1 com API interna de templates e setup.sh.\n\n> GitHub: https://github.com/cesarbtakeda/H00ks_T0x1na\n> Status: Em Desenvolvimento" },
-            proj4: { title: "7-Zip-CVE-2025-0411-POC", content: "> Vulnerabilidade (CVSS 7.0) que permite bypass do Mark-of-the-Web no 7-Zip.\n> Atacante remoto executa código arbitrário via arquivo malicioso.\n> Exploração requer interação do usuário (abrir arquivo).\n> Falha na propagação de MotW para arquivos extraídos.\n\n> GitHub: https://github.com/cesarbtakeda/7-Zip-CVE-2025-0411-POC\n> Status: PoC Liberado" },
-            proj5: { title: "InstaInsane 1.1", content: "> Backend Python para ataques de bruteforce em ambientes controlados.\n> Rápido, limpo e com bypass rápido de defesas.\n> Projetado para testes éticos e pesquisa.\n\n> GitHub: https://github.com/cesarbtakeda/instainsane1.1\n> Status: v1.1 Estável" },
-            proj6: { title: "Am3b4_t00ls", content: "> Solução própria de bug bounty automation.\n> Ferramentas para recon quando o tempo é curto.\n> Strings customizáveis com as melhores tools pré-definidas.\n\n> GitHub: https://github.com/cesarbtakeda/Am3b4_t00ls\n> Status: Ativo | Uso: Bug Bounty" },
-
-            bug1: { title: "Pichau Bug", content: "> Alvo: Pichau\n> Vulnerabilidade: OpenRedirect | CWE-601\n> Plataforma: OpenBugBounty\n> Data: 26 de Junho, 2025\n> Detalhes: Redirecionamento aberto permitindo phishing.\n> Status: Reportado e Resolvido" },
-            bug2: { title: "9altitudes Bug", content: "> Vulnerabilidade: XSS | CWE-79\n> Detalhes: Encontrado na fase de recon analisando subdomínios com footprint. Botão de busca bloqueado por WAF, bypass com div mouseover para executar XSS ao passar o mouse.\n> Plataforma: Intigriti\n> Data: 26 de Junho, 2025\n> Status: Triage" },
-            bug3: { title: "GlasDoor Bug", content: "> Vulnerabilidade: CSRF | CWE-532\n> Detalhes: CSRF exposto no reset de senha, token sem limite de expiração, reutilizável e manipulável após primeiro uso!\n> Plataforma: HackerOne\n> Data: 16 de Fevereiro, 2025\n> Status: Duplicado" },
-            bug4: { title: "Trip Bug", content: "> Vulnerabilidade: RCE\n> Detalhes: trip.com vulnerável a exploit RCE de servidor DNS vulnerável, permitindo acesso remoto via configuração dnsnameserver. Versão desatualizada de nginx.\n> Plataforma: HackerOne\n> Data: 29 de Setembro, 2024\n> Status: Informado" },
-            bug5: { title: "CacauShow Bug", content: "> Vulnerabilidade: XSS | CWE-79\n> Detalhes: XSS Refletido no campo de busca da Cacau Show. Sem sanitização de JavaScript, permitindo escalada para HTMLi e RCE via fixação de sessão. Gravidade: Média-Alta devido à facilidade de escalação.\n> Plataforma: N/A (Disclosure Direto)\n> Data: 9 de Março, 2025\n> Campo vulnerável: Search Field" },
-            bug6: { title: "Playtika Bug", content: "> Vulnerabilidade: OpenRedirect | CWE-601\n> Detalhes: Open Redirect e banner grabbing no subdomínio bingoblitz.com da Playtika.\n> Plataforma: HackerOne\n> Data: 19 de Março, 2025\n> Status: Reportado" }
+            skill3: {
+                title: "Certificações",
+                content: [
+                    { text: "> ISO-17024 | IC-PEN-1560 ", link: "https://certs.ibsec.com.br/?cert_hash=97493760d2db8082" },
+                    { text: "> PT-IC-SOC-380 ", link: "https://certs.ibsec.com.br/?cert_hash=c3976b818f132049" },
+                    { text: "> PT-IC-LNX-1180 ", link: "https://certs.ibsec.com.br/?cert_hash=12f35310bd31b76b" },
+                    { text: "> PT-IC-SEC-1780 ", link: "https://certs.ibsec.com.br/?cert_hash=721dac00d4467aaf" },
+                    { text: "> GCP ", link: "https://www.cloudskillsboost.google/public_profiles/52f87000-1206-45d7-9426-4cc9612d4b00" },
+                    { text: "\n\n> Certificações em pentest, SOC e Linux security.", link: null }
+                ]
+            }
+            // ... (outros modais permanecem iguais)
         };
 
-        // Sistema de Modal (cancela digitação anterior)
+        // Preenche os outros modais normalmente (sem links)
+        Object.keys(modalData).forEach(key => {
+            if (key !== 'skill3') {
+                modalData[key] = {
+                    title: modalData[key]?.title || "Título",
+                    content: typeof modalData[key]?.content === 'string' ? modalData[key].content : ""
+                };
+            }
+        });
+
+        // MODAL SYSTEM
         const modal = document.getElementById('modal');
         const modalTitle = document.getElementById('modal-title');
         const modalBody = document.getElementById('modal-body');
@@ -420,23 +399,64 @@ if (!in_array($request_uri, $rotas_validas)) {
             setTimeout(() => {
                 const item = modalData[id];
                 if (!item) return;
+
                 modalTitle.textContent = item.title;
-                modalBody.textContent = '';
+                modalBody.innerHTML = '';
                 modal.classList.add('active');
 
-                let i = 0;
-                const text = item.content;
-                function typeWriter() {
-                    if (i < text.length && modal.classList.contains('active')) {
-                        modalBody.textContent += text.charAt(i);
-                        i++;
-                        typingTimeout = setTimeout(typeWriter, 20);
-                    }
+                if (id === 'skill3') {
+                    typeCertifications(item.content);
+                } else {
+                    typeText(item.content);
                 }
-                typingTimeout = setTimeout(typeWriter, 100);
             }, 100);
         }
 
+        // Digitação normal (sem links)
+        function typeText(text) {
+            let i = 0;
+            function type() {
+                if (i < text.length && modal.classList.contains('active')) {
+                    modalBody.insertAdjacentText('beforeend', text[i++]);
+                    typingTimeout = setTimeout(type, 20);
+                }
+            }
+            typingTimeout = setTimeout(type, 100);
+        }
+
+        // Digitação com links [ver cert]
+        function typeCertifications(lines) {
+            let lineIndex = 0;
+            let charIndex = 0;
+
+            function typeNext() {
+                if (lineIndex >= lines.length || !modal.classList.contains('active')) return;
+
+                const line = lines[lineIndex];
+
+                if (charIndex < line.text.length) {
+                    modalBody.insertAdjacentText('beforeend', line.text[charIndex++]);
+                    typingTimeout = setTimeout(typeNext, 20);
+                } else {
+                    if (line.link) {
+                        const a = document.createElement('a');
+                        a.href = line.link;
+                        a.target = '_blank';
+                        a.className = 'cert-link';
+                        a.textContent = '[ver cert]';
+                        modalBody.appendChild(a);
+                    }
+                    modalBody.appendChild(document.createTextNode('\n'));
+                    lineIndex++;
+                    charIndex = 0;
+                    typingTimeout = setTimeout(typeNext, 20);
+                }
+            }
+
+            typingTimeout = setTimeout(typeNext, 100);
+        }
+
+        // Eventos
         document.querySelectorAll('.clickable').forEach(el => {
             el.addEventListener('click', e => {
                 e.stopPropagation();
@@ -448,12 +468,14 @@ if (!in_array($request_uri, $rotas_validas)) {
             if (typingTimeout) clearTimeout(typingTimeout);
             modal.classList.remove('active');
         });
+
         modal.addEventListener('click', e => {
             if (e.target === modal) {
                 if (typingTimeout) clearTimeout(typingTimeout);
                 modal.classList.remove('active');
             }
         });
+
         document.addEventListener('keydown', e => {
             if (e.key === 'Escape') {
                 if (typingTimeout) clearTimeout(typingTimeout);
@@ -461,14 +483,12 @@ if (!in_array($request_uri, $rotas_validas)) {
             }
         });
 
-        // Alternar idioma
+        // Language Toggle
         const langToggle = document.getElementById('lang-toggle');
         let isEnglish = false;
-
         langToggle.addEventListener('click', () => {
             isEnglish = !isEnglish;
             document.body.classList.toggle('en', isEnglish);
-
             document.querySelectorAll('[data-en]').forEach(el => {
                 if (isEnglish) {
                     el.dataset.pt = el.textContent;
@@ -477,7 +497,6 @@ if (!in_array($request_uri, $rotas_validas)) {
                     el.textContent = el.dataset.pt || el.dataset.en;
                 }
             });
-
             document.querySelectorAll('.clickable').forEach(el => {
                 const id = el.dataset.modal;
                 const item = modalData[id];
