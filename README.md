@@ -1,3 +1,3 @@
 # site
-link: https://cesarbtakeda.netlify.app/
+link: https://cesarbtakeda.xyz/
 Meu portfolio feito em JS, PHP, Html, CSS
