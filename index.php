@@ -238,8 +238,8 @@ if (!in_array($request_uri, $rotas_validas)) {
         <main>
             <section id="about">
                 <h2 data-en="root@cesar:~$ whoami">root@cesar:~$ whoami</h2>
-                <p class="terminal-line" data-en="Passionate about technology and cybersecurity. Skilled in ethical hacking, exploit development, and network intrusion.">
-                    Apaixonado por tecnologia e cibersegurança. Habilidoso em hacking ético, desenvolvimento de exploits e intrusão de redes.
+                <p class="terminal-line" data-en="Passionate about technology and cybersecurity. Skilled in ethical hacking, exploit development, and network intrusion. I currently work at LIGA (GAMES AND APPS INNOVATION LABORATORY) located at FACENS, as a cybersecurity intern with the Purple Team.">
+                   Apaixonado por tecnologia e cibersegurança. Habilidoso em hacking ético, desenvolvimento de exploits e intrusão de redes. Atualmente trabalho no LIGA (LABORATÓRIO DE INOVAÇÃO DE GAMES E APPS) que fica na Facens, como estagiário de cybersecurity no Purple Team.
                 </p>
             </section>
 
@@ -270,6 +270,7 @@ if (!in_array($request_uri, $rotas_validas)) {
                 </ul>
             </section>
 
+            <!-- 10 BUGS BOUNTY -->
             <section id="bug-bounty">
                 <h2 data-en="bugbounty --report">bugbounty --report</h2>
                 <ul>
@@ -279,6 +280,10 @@ if (!in_array($request_uri, $rotas_validas)) {
                     <li><span class="clickable" data-modal="bug4" data-en="Trip.com - Click to view">Trip.com - Clique para ver</span></li>
                     <li><span class="clickable" data-modal="bug5" data-en="CacauShow - Click to view">CacauShow - Clique para ver</span></li>
                     <li><span class="clickable" data-modal="bug6" data-en="Playtika - Click to view">Playtika - Clique para ver</span></li>
+                    <li><span class="clickable" data-modal="bug7" data-en="Facens - Click to view">Facens - Clique para ver</span></li>
+                    <li><span class="clickable" data-modal="bug8" data-en="Facens - Click to view">Facens - Clique para ver</span></li>
+                    <li><span class="clickable" data-modal="bug9" data-en="FarmaPonte - Click to view">FarmaPonte - Clique para ver</span></li>
+                    <li><span class="clickable" data-modal="bug10" data-en="Edebe - Click to view">Edebe - Clique para ver</span></li>
                 </ul>
             </section>
 
@@ -313,13 +318,11 @@ if (!in_array($request_uri, $rotas_validas)) {
         const progressBar = document.getElementById('progress-bar');
         const progressText = document.getElementById('progress-text');
         const mainContent = document.getElementById('main-content');
-
         let progress = 0;
         const duration = 3000;
         const interval = 30;
         const steps = duration / interval;
         const increment = 100 / steps;
-
         const loadingInterval = setInterval(() => {
             progress += increment;
             if (progress >= 100) {
@@ -339,8 +342,8 @@ if (!in_array($request_uri, $rotas_validas)) {
             loadAscii();
         }
 
-        // === ASCII ===
-        let typingTimeout = null;
+        // === ASCII (INDEPENDENTE) ===
+        let asciiTypingTimeout = null;
         function loadAscii() {
             const el = document.getElementById('ascii-art');
             el.textContent = '';
@@ -353,7 +356,7 @@ if (!in_array($request_uri, $rotas_validas)) {
                     const type = () => {
                         if (i < data.length) {
                             el.textContent += data[i++];
-                            typingTimeout = setTimeout(type, 30);
+                            asciiTypingTimeout = setTimeout(type, 30);
                         } else {
                             el.style.borderRight = 'none';
                             el.style.width = '100%';
@@ -368,18 +371,10 @@ if (!in_array($request_uri, $rotas_validas)) {
                 });
         }
 
-        // === MODAL DATA (100% COMPLETO COM TRADUÇÃO) ===
+        // === MODAL DATA (100% COMPLETO) ===
         const modalData = {
-            skill1: {
-                title: "Bancos de Dados",
-                content: "> MySQL\n> PostgreSQL\n> MongoDB\n> SQLite\n> Redis\n\n> Proficiência em design e otimização de BD relacionais e NoSQL.",
-                en: { title: "Databases", content: "> MySQL\n> PostgreSQL\n> MongoDB\n> SQLite\n> Redis\n\n> Proficiency in relational and NoSQL database design and optimization." }
-            },
-            skill2: {
-                title: "Sistemas Operacionais",
-                content: "> Debian 12\n> Kali Linux (WSL)\n> Arch Linux\n> BlackArch Linux\n> Windows 11 + WSL\n\n> Experiência em configuração, hardening e troubleshooting.",
-                en: { title: "Operating Systems", content: "> Debian 12\n> Kali Linux (WSL)\n> Arch Linux\n> BlackArch Linux\n> Windows 11 + WSL\n\n> Experience in configuration, hardening, and troubleshooting." }
-            },
+            skill1: { title: "Bancos de Dados", content: "> MySQL\n> PostgreSQL\n> MongoDB\n> SQLite\n> Redis\n\n> Proficiência em design e otimização de BD relacionais e NoSQL.", en: { title: "Databases", content: "> MySQL\n> PostgreSQL\n> MongoDB\n> SQLite\n> Redis\n\n> Proficiency in relational and NoSQL database design and optimization." } },
+            skill2: { title: "Sistemas Operacionais", content: "> Debian 12\n> Kali Linux (WSL)\n> Arch Linux\n> BlackArch Linux\n> Windows 11 + WSL\n\n> Experiência em configuração, hardening e troubleshooting.", en: { title: "Operating Systems", content: "> Debian 12\n> Kali Linux (WSL)\n> Arch Linux\n> BlackArch Linux\n> Windows 11 + WSL\n\n> Experience in configuration, hardening, and troubleshooting." } },
             skill3: {
                 title: "Certificações",
                 content: [
@@ -402,112 +397,67 @@ if (!in_array($request_uri, $rotas_validas)) {
                     ]
                 }
             },
-            skill4: {
-                title: "Hacking & Pentest",
-                content: "> Vulnerability Assessment\n> Exploit Development\n> Web Application Security\n> Network Penetration Testing\n> Reverse Engineering\n\n> Ferramentas: Metasploit, Burp, Nmap.",
-                en: { title: "Hacking & Pentest", content: "> Vulnerability Assessment\n> Exploit Development\n> Web Application Security\n> Network Penetration Testing\n> Reverse Engineering\n\n> Tools: Metasploit, Burp, Nmap." }
+            skill4: { title: "Hacking & Pentest", content: "> Vulnerability Assessment\n> Exploit Development\n> Web Application Security\n> Network Penetration Testing\n> Reverse Engineering\n\n> Ferramentas: Metasploit, Burp, Nmap.", en: { title: "Hacking & Pentest", content: "> Vulnerability Assessment\n> Exploit Development\n> Web Application Security\n> Network Penetration Testing\n> Reverse Engineering\n\n> Tools: Metasploit, Burp, Nmap." } },
+            skill5: { title: "Linguagens de Programação", content: "> PHP 8\n> JavaScript (ES6+)\n> Python 3\n> Bash Script\n> SQL\n\n> Desenvolvimento de tools customizadas para security.", en: { title: "Programming Languages", content: "> PHP 8\n> JavaScript (ES6+)\n> Python 3\n> Bash Script\n> SQL\n\n> Development of custom security tools." } },
+            skill6: { title: "Segurança de Rede", content: "> WAF/IDS/IPS\n> VPNs (OpenVPN, WireGuard)\n> Network Protocols\n> Wireless Security (WPA3, Evil Twin)\n\n> Configuração e auditoria de infra segura.", en: { title: "Network Security", content: "> WAF/IDS/IPS\n> VPNs (OpenVPN, WireGuard)\n> Network Protocols\n> Wireless Security (WPA3, Evil Twin)\n\n> Secure infrastructure setup and auditing." } },
+            skill7: { title: "Tecnologias Web", content: "> HTML5 / CSS3\n> JavaScript (Vanilla + Frameworks)\n> PHP 8+\n> REST APIs\n\n> Desenvolvimento full-stack com foco em secure coding.", en: { title: "Web Technologies", content: "> HTML5 / CSS3\n> JavaScript (Vanilla + Frameworks)\n> PHP 8+\n> REST APIs\n\n> Full-stack development with focus on secure coding." } },
+            skill8: { title: "Cloud", content: "> AWS (EC2, S3, Lambda)\n> Google Cloud Platform\n> Microsoft Azure\n\n> Deploy e security de aplicações na nuvem.", en: { title: "Cloud", content: "> AWS (EC2, S3, Lambda)\n> Google Cloud Platform\n> Microsoft Azure\n\n> Cloud application deployment and security." } },
+            skill9: { title: "Ferramentas", content: "> Wireshark\n> Metasploit\n> Nmap\n> Burp Suite\n> sqlmap\n> John the Ripper\n\n> Uso avançado em red team operations.", en: { title: "Tools", content: "> Wireshark\n> Metasploit\n> Nmap\n> Burp Suite\n> sqlmap\n> John the Ripper\n\n> Advanced use in red team operations." } },
+            proj1: { title: "Tool-Anti-Phishing", content: "> Ferramenta desenvolvida para interceptar conexões de phishing e encher o cache de log do atacante.\n> Usa rede Tor e proxies para anonimato do usuário.\n> Proteção contra trojans, e-mails phishing e derrubada de VPNs em IPs públicos.\n\n> Status: Ativo | Linguagem: Python/Bash", link: "https://github.com/cesarbtakeda/Tool-Anti-Phishing", en: { title: "Tool-Anti-Phishing", content: "> Tool developed to intercept phishing connections and flood attacker logs.\n> Uses Tor and proxies for user anonymity.\n> Protection against trojans, phishing emails, and VPN drops on public IPs.\n\n> Status: Active | Language: Python/Bash", link: "https://github.com/cesarbtakeda/Tool-Anti-Phishing" } },
+            proj2: { title: "UPX Gestão de Reclamações", content: "> Projeto desenvolvido na faculdade durante o curso UPX.\n> Sistema para gerenciar reclamações de forma dinâmica e massiva.\n> Gera relatórios diários de qualquer tipo de empresa, cidade ou sindicato.\n\n> Status: Concluído | Linguagem: PHP/MySQL", link: "https://github.com/cesarbtakeda/UPX_PROJETO_GESTAO_DE_RECLAMACAO", en: { title: "UPX Complaint Management", content: "> Project developed during UPX course.\n> Dynamic and massive complaint management system.\n> Generates daily reports for any company, city, or union.\n\n> Status: Completed | Language: PHP/MySQL", link: "https://github.com/cesarbtakeda/UPX_PROJETO_GESTAO_DE_RECLAMACAO" } },
+            proj3: { title: "H00ks_T0x1na", content: "> Framework de Phishing (Social Engineering) para controle remoto de PC ou mobile via links.\n> Compatível com Windows, Android e iPhone.\n> Escrito em HTML, CSS, PHP, JavaScript, BashScript.\n> Alpha 0.1 com API interna de templates e setup.sh.\n\n> Status: Em Desenvolvimento", link: "https://github.com/cesarbtakeda/H00ks_T0x1na", en: { title: "H00ks_T0x1na", content: "> Phishing Framework (Social Engineering) for remote control via links.\n> Compatible with Windows, Android, and iPhone.\n> Written in HTML, CSS, PHP, JavaScript, BashScript.\n> Alpha 0.1 with internal template API and setup.sh.\n\n> Status: In Development", link: "https://github.com/cesarbtakeda/H00ks_T0x1na" } },
+            proj4: { title: "7-Zip CVE-2025-0411", content: "> Vulnerabilidade (CVSS 7.0) que permite bypass do Mark-of-the-Web no 7-Zip.\n> Atacante remoto executa código arbitrário via arquivo malicioso.\n> Exploração requer interação do usuário (abrir arquivo).\n> Falha na propagação de MotW para arquivos extraídos.\n\n> Status: PoC Liberado", link: "https://github.com/cesarbtakeda/7-Zip-CVE-2025-0411-POC", en: { title: "7-Zip CVE-2025-0411", content: "> Vulnerability (CVSS 7.0) allowing Mark-of-the-Web bypass in 7-Zip.\n> Remote attacker executes arbitrary code via malicious file.\n> Requires user interaction (open file).\n> Failure in MotW propagation to extracted files.\n\n> Status: PoC Released", link: "https://github.com/cesarbtakeda/7-Zip-CVE-2025-0411-POC" } },
+            proj5: { title: "InstaInsane 1.1", content: "> Backend Python para ataques de bruteforce em ambientes controlados.\n> Rápido, limpo e com bypass rápido de defesas.\n> Projetado para testes éticos e pesquisa.\n\n> Status: v1.1 Estável", link: "https://github.com/cesarbtakeda/instainsane1.1", en: { title: "InstaInsane 1.1", content: "> Python backend for brute-force attacks in controlled environments.\n> Fast, clean, and quick defense bypass.\n> Designed for ethical testing and research.\n\n> Status: v1.1 Stable", link: "https://github.com/cesarbtakeda/instainsane1.1" } },
+            proj6: { title: "Am3b4_t00ls", content: "> Solução própria de bug bounty automation.\n> Ferramentas para recon quando o tempo é curto.\n> Strings customizáveis com as melhores tools pré-definidas.\n\n> Status: Ativo | Uso: Bug Bounty", link: "https://github.com/cesarbtakeda/Am3b4_t00ls", en: { title: "Am3b4_t00ls", content: "> Custom bug bounty automation solution.\n> Recon tools when time is short.\n> Customizable strings with pre-defined best tools.\n\n> Status: Active | Use: Bug Bounty", link: "https://github.com/cesarbtakeda/Am3b4_t00ls" } },
+            bug1: { title: "Pichau Bug", content: "> Alvo: Pichau\n> Vulnerabilidade: OpenRedirect | CWE-601\n> Plataforma: OpenBugBounty\n> Data: 26 de Junho, 2025\n> Detalhes: Redirecionamento aberto permitindo phishing.\n> Status: Reportado e Resolvido", en: { title: "Pichau Bug", content: "> Target: Pichau\n> Vulnerability: OpenRedirect | CWE-601\n> Platform: OpenBugBounty\n> Date: June 26, 2025\n> Details: Open redirect enabling phishing.\n> Status: Reported and Resolved" } },
+            bug2: { title: "9altitudes Bug", content: "> Vulnerabilidade: XSS | CWE-79\n> Detalhes: Encontrado na fase de recon analisando subdomínios com footprint. Botão de busca bloqueado por WAF, bypass com div mouseover para executar XSS ao passar o mouse.\n> Plataforma: Intigriti\n> Data: 26 de Junho, 2025\n> Status: Triage", en: { title: "9altitudes Bug", content: "> Vulnerability: XSS | CWE-79\n> Details: Found during recon scanning subdomains with footprint. Search button blocked by WAF, bypassed with div mouseover to execute XSS on hover.\n> Platform: Intigriti\n> Date: June 26, 2025\n> Status: Triage" } },
+            bug3: { title: "GlasDoor Bug", content: "> Vulnerabilidade: CSRF | CWE-532\n> Detalhes: CSRF exposto no reset de senha, token sem limite de expiração, reutilizável e manipulável após primeiro uso!\n> Plataforma: HackerOne\n> Data: 16 de Fevereiro, 2025\n> Status: Duplicado", en: { title: "GlasDoor Bug", content: "> Vulnerability: CSRF | CWE-532\n> Details: Exposed CSRF in password reset, token with no expiration, reusable and manipulable after first use!\n> Platform: HackerOne\n> Date: February 16, 2025\n> Status: Duplicate" } },
+            bug4: { title: "Trip.com Bug", content: "> Vulnerabilidade: RCE\n> Detalhes: trip.com vulnerável a exploit RCE de servidor DNS vulnerável, permitindo acesso remoto via configuração dnsnameserver. Versão desatualizada de nginx.\n> Plataforma: HackerOne\n> Data: 29 de Setembro, 2024\n> Status: Informado", en: { title: "Trip.com Bug", content: "> Vulnerability: RCE\n> Details: trip.com vulnerable to DNS server RCE exploit, allowing remote access via dnsnameserver config. Outdated nginx version.\n> Platform: HackerOne\n> Date: September 29, 2024\n> Status: Informed" } },
+            bug5: { title: "CacauShow Bug", content: "> Vulnerabilidade: XSS | CWE-79\n> Detalhes: XSS Refletido no campo de busca da Cacau Show. Sem sanitização de JavaScript, permitindo escalada para HTMLi e RCE via fixação de sessão. Gravidade: Média-Alta devido à facilidade de escalação.\n> Plataforma: N/A (Disclosure Direto)\n> Data: 9 de Março, 2025\n> Campo vulnerável: Search Field", en: { title: "CacauShow Bug", content: "> Vulnerability: XSS | CWE-79\n> Details: Reflected XSS in Cacau Show search field. No JavaScript sanitization, allowing escalation to HTMLi and RCE via session fixation. Severity: Medium-High due to ease of escalation.\n> Platform: N/A (Direct Disclosure)\n> Date: March 9, 2025\n> Vulnerable Field: Search Field" } },
+            bug6: { title: "Playtika Bug", content: "> Vulnerabilidade: OpenRedirect | CWE-601\n> Detalhes: Open Redirect e banner grabbing no subdomínio bingoblitz.com da Playtika.\n> Plataforma: HackerOne\n> Data: 19 de Março, 2025\n> Status: Reportado", en: { title: "Playtika Bug", content: "> Vulnerability: OpenRedirect | CWE-601\n> Details: Open Redirect and banner grabbing on Playtika's bingoblitz.com subdomain.\n> Platform: HackerOne\n> Date: March 19, 2025\n> Status: Reported" } },
+            bug7: { 
+                title: "Facens Bug", 
+                content: "> Alvo: Facens\n> Vulnerabilidade: IDOR | CWE-639\n> Plataforma: Facens (Interno)\n> Data: Julho de 2025\n> Detalhes: IDOR na API de boleto permitia manipular IDs de pagamento, zerando valores de mensalidade.\n> Impacto: Acesso gratuito a serviços pagos.\n> Status: Reportado e Corrigido", 
+                en: { 
+                    title: "Facens Bug", 
+                    content: "> Target: Facens\n> Vulnerability: IDOR | CWE-639\n> Platform: Facens (Internal)\n> Date: July 2025\n> Details: IDOR in billing API allowed manipulation of payment IDs, zeroing tuition fees.\n> Impact: Free access to paid services.\n> Status: Reported and Fixed" 
+                } 
             },
-            skill5: {
-                title: "Linguagens de Programação",
-                content: "> PHP 8\n> JavaScript (ES6+)\n> Python 3\n> Bash Script\n> SQL\n\n> Desenvolvimento de tools customizadas para security.",
-                en: { title: "Programming Languages", content: "> PHP 8\n> JavaScript (ES6+)\n> Python 3\n> Bash Script\n> SQL\n\n> Development of custom security tools." }
+            bug8: { 
+                title: "Facens Bug", 
+                content: "> Alvo: Facens Carreiras\n> Vulnerabilidade: Security Misconfiguration | CWE-611\n> Plataforma: WordPress (Facens)\n> Data: Agosto de 2025\n> Detalhes: Banco de dados completo (backup.zip) exposto publicamente em /wp-content/uploads/.\n> Impacto: Vazamento de dados sensíveis de alunos e professores.\n> Status: Reportado e Removido", 
+                en: { 
+                    title: "Facens Bug", 
+                    content: "> Target: Facens Careers\n> Vulnerability: Security Misconfiguration | CWE-611\n> Platform: WordPress (Facens)\n> Date: August 2025\n> Details: Full database backup (backup.zip) publicly exposed in /wp-content/uploads/.\n> Impact: Leak of sensitive student and faculty data.\n> Status: Reported and Removed" 
+                } 
             },
-            skill6: {
-                title: "Segurança de Rede",
-                content: "> WAF/IDS/IPS\n> VPNs (OpenVPN, WireGuard)\n> Network Protocols\n> Wireless Security (WPA3, Evil Twin)\n\n> Configuração e auditoria de infra segura.",
-                en: { title: "Network Security", content: "> WAF/IDS/IPS\n> VPNs (OpenVPN, WireGuard)\n> Network Protocols\n> Wireless Security (WPA3, Evil Twin)\n\n> Secure infrastructure setup and auditing." }
+            bug9: { 
+                title: "FarmaPonte Bug", 
+                content: "> Alvo: FarmaPonte\n> Vulnerabilidade: Email Spoofing | CWE-924\n> Plataforma: Email\n> Data: Agosto de 2025\n> Detalhes: API de envio de e-mails permitia spoofing completo do remetente via header injection.\n> Impacto: Envio de e-mails falsos em nome da empresa.\n> Status: Reportado e Corrigido", 
+                en: { 
+                    title: "FarmaPonte Bug", 
+                    content: "> Target: FarmaPonte\n> Vulnerability: Email Spoofing | CWE-924\n> Platform: Email\n> Date: August 2025\n> Details: Email sending API allowed full sender spoofing via header injection.\n> Impact: Sending fake emails on behalf of the company.\n> Status: Reported and Fixed" 
+                } 
             },
-            skill7: {
-                title: "Tecnologias Web",
-                content: "> HTML5 / CSS3\n> JavaScript (Vanilla + Frameworks)\n> PHP 8+\n> REST APIs\n\n> Desenvolvimento full-stack com foco em secure coding.",
-                en: { title: "Web Technologies", content: "> HTML5 / CSS3\n> JavaScript (Vanilla + Frameworks)\n> PHP 8+\n> REST APIs\n\n> Full-stack development with focus on secure coding." }
-            },
-            skill8: {
-                title: "Cloud",
-                content: "> AWS (EC2, S3, Lambda)\n> Google Cloud Platform\n> Microsoft Azure\n\n> Deploy e security de aplicações na nuvem.",
-                en: { title: "Cloud", content: "> AWS (EC2, S3, Lambda)\n> Google Cloud Platform\n> Microsoft Azure\n\n> Cloud application deployment and security." }
-            },
-            skill9: {
-                title: "Ferramentas",
-                content: "> Wireshark\n> Metasploit\n> Nmap\n> Burp Suite\n> sqlmap\n> John the Ripper\n\n> Uso avançado em red team operations.",
-                en: { title: "Tools", content: "> Wireshark\n> Metasploit\n> Nmap\n> Burp Suite\n> sqlmap\n> John the Ripper\n\n> Advanced use in red team operations." }
-            },
-            proj1: {
-                title: "Tool-Anti-Phishing",
-                content: "> Ferramenta desenvolvida para interceptar conexões de phishing e encher o cache de log do atacante.\n> Usa rede Tor e proxies para anonimato do usuário.\n> Proteção contra trojans, e-mails phishing e derrubada de VPNs em IPs públicos.\n\n> Status: Ativo | Linguagem: Python/Bash",
-                link: "https://github.com/cesarbtakeda/Tool-Anti-Phishing",
-                en: { title: "Tool-Anti-Phishing", content: "> Tool developed to intercept phishing connections and flood attacker logs.\n> Uses Tor and proxies for user anonymity.\n> Protection against trojans, phishing emails, and VPN drops on public IPs.\n\n> Status: Active | Language: Python/Bash", link: "https://github.com/cesarbtakeda/Tool-Anti-Phishing" }
-            },
-            proj2: {
-                title: "UPX Gestão de Reclamações",
-                content: "> Projeto desenvolvido na faculdade durante o curso UPX.\n> Sistema para gerenciar reclamações de forma dinâmica e massiva.\n> Gera relatórios diários de qualquer tipo de empresa, cidade ou sindicato.\n\n> Status: Concluído | Linguagem: PHP/MySQL",
-                link: "https://github.com/cesarbtakeda/UPX_PROJETO_GESTAO_DE_RECLAMACAO",
-                en: { title: "UPX Complaint Management", content: "> Project developed during UPX course.\n> Dynamic and massive complaint management system.\n> Generates daily reports for any company, city, or union.\n\n> Status: Completed | Language: PHP/MySQL", link: "https://github.com/cesarbtakeda/UPX_PROJETO_GESTAO_DE_RECLAMACAO" }
-            },
-            proj3: {
-                title: "H00ks_T0x1na",
-                content: "> Framework de Phishing (Social Engineering) para controle remoto de PC ou mobile via links.\n> Compatível com Windows, Android e iPhone.\n> Escrito em HTML, CSS, PHP, JavaScript, BashScript.\n> Alpha 0.1 com API interna de templates e setup.sh.\n\n> Status: Em Desenvolvimento",
-                link: "https://github.com/cesarbtakeda/H00ks_T0x1na",
-                en: { title: "H00ks_T0x1na", content: "> Phishing Framework (Social Engineering) for remote control via links.\n> Compatible with Windows, Android, and iPhone.\n> Written in HTML, CSS, PHP, JavaScript, BashScript.\n> Alpha 0.1 with internal template API and setup.sh.\n\n> Status: In Development", link: "https://github.com/cesarbtakeda/H00ks_T0x1na" }
-            },
-            proj4: {
-                title: "7-Zip CVE-2025-0411",
-                content: "> Vulnerabilidade (CVSS 7.0) que permite bypass do Mark-of-the-Web no 7-Zip.\n> Atacante remoto executa código arbitrário via arquivo malicioso.\n> Exploração requer interação do usuário (abrir arquivo).\n> Falha na propagação de MotW para arquivos extraídos.\n\n> Status: PoC Liberado",
-                link: "https://github.com/cesarbtakeda/7-Zip-CVE-2025-0411-POC",
-                en: { title: "7-Zip CVE-2025-0411", content: "> Vulnerability (CVSS 7.0) allowing Mark-of-the-Web bypass in 7-Zip.\n> Remote attacker executes arbitrary code via malicious file.\n> Requires user interaction (open file).\n> Failure in MotW propagation to extracted files.\n\n> Status: PoC Released", link: "https://github.com/cesarbtakeda/7-Zip-CVE-2025-0411-POC" }
-            },
-            proj5: {
-                title: "InstaInsane 1.1",
-                content: "> Backend Python para ataques de bruteforce em ambientes controlados.\n> Rápido, limpo e com bypass rápido de defesas.\n> Projetado para testes éticos e pesquisa.\n\n> Status: v1.1 Estável",
-                link: "https://github.com/cesarbtakeda/instainsane1.1",
-                en: { title: "InstaInsane 1.1", content: "> Python backend for brute-force attacks in controlled environments.\n> Fast, clean, and quick defense bypass.\n> Designed for ethical testing and research.\n\n> Status: v1.1 Stable", link: "https://github.com/cesarbtakeda/instainsane1.1" }
-            },
-            proj6: {
-                title: "Am3b4_t00ls",
-                content: "> Solução própria de bug bounty automation.\n> Ferramentas para recon quando o tempo é curto.\n> Strings customizáveis com as melhores tools pré-definidas.\n\n> Status: Ativo | Uso: Bug Bounty",
-                link: "https://github.com/cesarbtakeda/Am3b4_t00ls",
-                en: { title: "Am3b4_t00ls", content: "> Custom bug bounty automation solution.\n> Recon tools when time is short.\n> Customizable strings with pre-defined best tools.\n\n> Status: Active | Use: Bug Bounty", link: "https://github.com/cesarbtakeda/Am3b4_t00ls" }
-            },
-            bug1: {
-                title: "Pichau Bug",
-                content: "> Alvo: Pichau\n> Vulnerabilidade: OpenRedirect | CWE-601\n> Plataforma: OpenBugBounty\n> Data: 26 de Junho, 2025\n> Detalhes: Redirecionamento aberto permitindo phishing.\n> Status: Reportado e Resolvido",
-                en: { title: "Pichau Bug", content: "> Target: Pichau\n> Vulnerability: OpenRedirect | CWE-601\n> Platform: OpenBugBounty\n> Date: June 26, 2025\n> Details: Open redirect enabling phishing.\n> Status: Reported and Resolved" }
-            },
-            bug2: {
-                title: "9altitudes Bug",
-                content: "> Vulnerabilidade: XSS | CWE-79\n> Detalhes: Encontrado na fase de recon analisando subdomínios com footprint. Botão de busca bloqueado por WAF, bypass com div mouseover para executar XSS ao passar o mouse.\n> Plataforma: Intigriti\n> Data: 26 de Junho, 2025\n> Status: Triage",
-                en: { title: "9altitudes Bug", content: "> Vulnerability: XSS | CWE-79\n> Details: Found during recon scanning subdomains with footprint. Search button blocked by WAF, bypassed with div mouseover to execute XSS on hover.\n> Platform: Intigriti\n> Date: June 26, 2025\n> Status: Triage" }
-            },
-            bug3: {
-                title: "GlasDoor Bug",
-                content: "> Vulnerabilidade: CSRF | CWE-532\n> Detalhes: CSRF exposto no reset de senha, token sem limite de expiração, reutilizável e manipulável após primeiro uso!\n> Plataforma: HackerOne\n> Data: 16 de Fevereiro, 2025\n> Status: Duplicado",
-                en: { title: "GlasDoor Bug", content: "> Vulnerability: CSRF | CWE-532\n> Details: Exposed CSRF in password reset, token with no expiration, reusable and manipulable after first use!\n> Platform: HackerOne\n> Date: February 16, 2025\n> Status: Duplicate" }
-            },
-            bug4: {
-                title: "Trip.com Bug",
-                content: "> Vulnerabilidade: RCE\n> Detalhes: trip.com vulnerável a exploit RCE de servidor DNS vulnerável, permitindo acesso remoto via configuração dnsnameserver. Versão desatualizada de nginx.\n> Plataforma: HackerOne\n> Data: 29 de Setembro, 2024\n> Status: Informado",
-                en: { title: "Trip.com Bug", content: "> Vulnerability: RCE\n> Details: trip.com vulnerable to DNS server RCE exploit, allowing remote access via dnsnameserver config. Outdated nginx version.\n> Platform: HackerOne\n> Date: September 29, 2024\n> Status: Informed" }
-            },
-            bug5: {
-                title: "CacauShow Bug",
-                content: "> Vulnerabilidade: XSS | CWE-79\n> Detalhes: XSS Refletido no campo de busca da Cacau Show. Sem sanitização de JavaScript, permitindo escalada para HTMLi e RCE via fixação de sessão. Gravidade: Média-Alta devido à facilidade de escalação.\n> Plataforma: N/A (Disclosure Direto)\n> Data: 9 de Março, 2025\n> Campo vulnerável: Search Field",
-                en: { title: "CacauShow Bug", content: "> Vulnerability: XSS | CWE-79\n> Details: Reflected XSS in Cacau Show search field. No JavaScript sanitization, allowing escalation to HTMLi and RCE via session fixation. Severity: Medium-High due to ease of escalation.\n> Platform: N/A (Direct Disclosure)\n> Date: March 9, 2025\n> Vulnerable Field: Search Field" }
-            },
-            bug6: {
-                title: "Playtika Bug",
-                content: "> Vulnerabilidade: OpenRedirect | CWE-601\n> Detalhes: Open Redirect e banner grabbing no subdomínio bingoblitz.com da Playtika.\n> Plataforma: HackerOne\n> Data: 19 de Março, 2025\n> Status: Reportado",
-                en: { title: "Playtika Bug", content: "> Vulnerability: OpenRedirect | CWE-601\n> Details: Open Redirect and banner grabbing on Playtika's bingoblitz.com subdomain.\n> Platform: HackerOne\n> Date: March 19, 2025\n> Status: Reported" }
+            bug10: { 
+                title: "Edebe Bug", 
+                content: "> Alvo: Edebe\n> Vulnerabilidade: Stored XSS | CWE-79\n> Plataforma: Estagio (Liga)\n> Data: Novembro de 2025\n> Detalhes: Upload de arquivos XML maliciosos no bucket S3 permitia execução de XSS persistente.\n> Impacto: Scripts armazenados permanentemente e compartilháveis via spam.\n> Status: Reportado e Corrigido", 
+                en: { 
+                    title: "Edebe Bug", 
+                    content: "> Target: Edebe\n> Vulnerability: Stored XSS | CWE-79\n> Platform: Estagio (Liga)\n> Date: November 2025\n> Details: Upload of malicious XML files to S3 bucket allowed persistent XSS execution.\n> Impact: Scripts permanently stored and shareable via spam.\n> Status: Reported and Fixed" 
+                } 
             }
         };
 
-        // === MODAL SYSTEM ===
+        // === MODAL SYSTEM (INDEPENDENTE) ===
         const modal = document.getElementById('modal');
         const modalTitle = document.getElementById('modal-title');
         const modalBody = document.getElementById('modal-body');
         const closeBtn = document.querySelector('.close-modal');
+        let modalTypingTimeout = null;
 
         function openModal(id) {
-            if (typingTimeout) clearTimeout(typingTimeout);
+            if (modalTypingTimeout) clearTimeout(modalTypingTimeout);
             modal.classList.remove('active');
             setTimeout(() => {
                 const item = modalData[id];
@@ -528,10 +478,10 @@ if (!in_array($request_uri, $rotas_validas)) {
             function type() {
                 if (i < text.length && modal.classList.contains('active')) {
                     modalBody.insertAdjacentText('beforeend', text[i++]);
-                    typingTimeout = setTimeout(type, 20);
+                    modalTypingTimeout = setTimeout(type, 20);
                 }
             }
-            typingTimeout = setTimeout(type, 100);
+            modalTypingTimeout = setTimeout(type, 100);
         }
 
         function typeCertifications(lines, isEn) {
@@ -541,7 +491,7 @@ if (!in_array($request_uri, $rotas_validas)) {
                 const line = lines[lineIndex];
                 if (charIndex < line.text.length) {
                     modalBody.insertAdjacentText('beforeend', line.text[charIndex++]);
-                    typingTimeout = setTimeout(typeNext, 20);
+                    modalTypingTimeout = setTimeout(typeNext, 20);
                 } else {
                     if (line.link) {
                         const text = isEn ? '[view cert]' : '[ver cert]';
@@ -549,10 +499,10 @@ if (!in_array($request_uri, $rotas_validas)) {
                     }
                     modalBody.insertAdjacentText('beforeend', '\n');
                     lineIndex++; charIndex = 0;
-                    typingTimeout = setTimeout(typeNext, 20);
+                    modalTypingTimeout = setTimeout(typeNext, 20);
                 }
             }
-            typingTimeout = setTimeout(typeNext, 100);
+            modalTypingTimeout = setTimeout(typeNext, 100);
         }
 
         function typeProject(text, link, isEn) {
@@ -560,22 +510,35 @@ if (!in_array($request_uri, $rotas_validas)) {
             function type() {
                 if (i < text.length && modal.classList.contains('active')) {
                     modalBody.insertAdjacentText('beforeend', text[i++]);
-                    typingTimeout = setTimeout(type, 20);
+                    modalTypingTimeout = setTimeout(type, 20);
                 } else if (modal.classList.contains('active') && link) {
                     const text = isEn ? '[project link]' : '[link do projeto]';
                     modalBody.insertAdjacentHTML('beforeend', `\n\n> <a href="${link}" target="_blank" class="project-link">${text}</a>`);
                 }
             }
-            typingTimeout = setTimeout(type, 100);
+            modalTypingTimeout = setTimeout(type, 100);
         }
 
         document.querySelectorAll('.clickable').forEach(el => {
             el.addEventListener('click', e => { e.stopPropagation(); openModal(el.dataset.modal); });
         });
 
-        closeBtn.addEventListener('click', () => { if (typingTimeout) clearTimeout(typingTimeout); modal.classList.remove('active'); });
-        modal.addEventListener('click', e => { if (e.target === modal) { if (typingTimeout) clearTimeout(typingTimeout); modal.classList.remove('active'); } });
-        document.addEventListener('keydown', e => { if (e.key === 'Escape') { if (typingTimeout) clearTimeout(typingTimeout); modal.classList.remove('active'); } });
+        closeBtn.addEventListener('click', () => { 
+            if (modalTypingTimeout) clearTimeout(modalTypingTimeout); 
+            modal.classList.remove('active'); 
+        });
+        modal.addEventListener('click', e => { 
+            if (e.target === modal) { 
+                if (modalTypingTimeout) clearTimeout(modalTypingTimeout); 
+                modal.classList.remove('active'); 
+            } 
+        });
+        document.addEventListener('keydown', e => { 
+            if (e.key === 'Escape') { 
+                if (modalTypingTimeout) clearTimeout(modalTypingTimeout); 
+                modal.classList.remove('active'); 
+            } 
+        });
 
         // === LANGUAGE TOGGLE ===
         const langToggle = document.getElementById('lang-toggle');
