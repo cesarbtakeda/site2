@@ -1,9 +1,24 @@
+<?php
+$origin = $_SERVER['HTTP_ORIGIN'] ?? '';
+if ($origin && preg_match('/^https:\/\/cesarbtakeda\.xyz$/', $origin)) {
+    header("Access-Control-Allow-Origin: $origin");
+    header("Access-Control-Allow-Credentials: true");
+    header("Access-Control-Allow-Methods: GET, POST, OPTIONS");
+    header("Access-Control-Allow-Headers: Content-Type, Authorization");
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>404 | ACCESS DENIED</title>
+    <title>>_ 404 | ACCESS DENIED</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Roboto+Mono:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&family=Roboto+Mono&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -109,7 +124,7 @@
     <a href="/" class="back-link">> RETURN TO BASE</a>
 
     <script>
-        const text = "root@intruder:~$ whoami\n> [ERROR] User not found in system matrix.\n> [WARNING] Unauthorized access detected.\n> [ACTION] Returning to base...";
+        const text = "root@intruder:~$ whoami\n> [ERROR] User not found in system.\n> [WARNING] Unauthorized access detected.\n> [ACTION] Returning to base...";
         const el = document.getElementById('typing');
         el.textContent = '';
         let i = 0;
