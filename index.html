@@ -43,8 +43,7 @@ if (!in_array($request_uri, $rotas_validas)) {
             min-height: 100vh;
             overflow-y: auto;
         }
-
-        /* SCROLLBAR PERSONALIZADA */
+        /* SCROLLBAR */
         ::-webkit-scrollbar { width: 14px; }
         ::-webkit-scrollbar-track {
             background: #000;
@@ -95,8 +94,6 @@ if (!in_array($request_uri, $rotas_validas)) {
             font-family: 'Roboto Mono', monospace; color: var(--neon-cyan);
             font-size: 1.2rem; text-shadow: 0 0 10px var(--neon-cyan); margin-top: 0.5rem;
         }
-
-        /* SCANLINES */
         #loading-screen::before, body::before {
             content: ""; position: fixed; top: 0; left: 0; right: 0; bottom: 0;
             background: repeating-linear-gradient(0deg, rgba(0,0,0,0.15), rgba(0,0,0,0.15) 1px, transparent 1px, transparent 2px);
@@ -104,11 +101,33 @@ if (!in_array($request_uri, $rotas_validas)) {
         }
         #loading-screen::before { z-index: 1; animation-duration: 6s; }
         @keyframes scan { 0% { transform: translateY(0); } 100% { transform: translateY(100vh); } }
-
         @keyframes glitch {
             0%, 100% { text-shadow: 0.05em 0 0 #00ff00, -0.05em 0 0 #ff00ff; }
             15% { text-shadow: -0.05em 0 0 #00ff00, 0.05em 0 0 #ff00ff; }
             50% { text-shadow: 0.05em 0.05em 0 #00ff00, -0.05em -0.05em 0 #ff00ff; }
+        }
+
+        /* BOTÃO DE IDIOMA COM BANDEIRAS */
+        #lang-toggle {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            width: 48px;
+            height: 48px;
+            background: var(--bg-dark) center/cover no-repeat;
+            border: 2px solid var(--neon-green);
+            border-radius: 50%;
+            cursor: pointer;
+            box-shadow: 0 0 15px rgba(57, 255, 20, 0.6);
+            transition: all 0.3s;
+            z-index: 9997;
+            overflow: hidden;
+        }
+        body:not(.en) #lang-toggle { background-image: url('/static/flags/br.png'); }
+        body.en #lang-toggle       { background-image: url('/static/flags/us.png'); }
+        #lang-toggle:hover {
+            transform: scale(1.15);
+            box-shadow: 0 0 30px rgba(57, 255, 20, 0.9);
         }
 
         /* SITE */
@@ -116,22 +135,10 @@ if (!in_array($request_uri, $rotas_validas)) {
         #main-content.loaded { opacity: 1; }
         header, main, footer { display: none; }
         #main-content.loaded header, #main-content.loaded main, #main-content.loaded footer { display: block; }
-
         header {
             text-align: center; padding: 2rem 1rem; border-bottom: 1px solid var(--neon-green);
             box-shadow: 0 0 20px rgba(57, 255, 20, 0.3); position: relative;
         }
-        #lang-toggle {
-            position: absolute; top: 1rem; right: 1rem; width: 40px; height: 40px;
-            background: linear-gradient(135deg, #009c3b 0%, #009c3b 35%, #ffdf00 35%, #ffdf00 65%, #002776 65%, #002776 100%);
-            border: 2px solid var(--neon-green); border-radius: 50%; cursor: pointer;
-            box-shadow: 0 0 15px rgba(57, 255, 20, 0.6); display: flex; align-items: center;
-            justify-content: center; font-size: 1.2rem; color: white; text-shadow: 0 0 5px #000;
-            transition: all 0.3s; z-index: 9997;
-        }
-        #lang-toggle:hover { transform: scale(1.1); box-shadow: 0 0 25px rgba(57, 255, 20, 0.9); }
-        #lang-toggle::after { content: "BR"; font-weight: bold; }
-        body.en #lang-toggle::after { content: "EN"; }
         #ascii-art {
             font-family: 'Courier New', monospace; color: var(--neon-green); text-shadow: var(--text-glow);
             font-size: 0.8rem; line-height: 1; white-space: pre; margin-bottom: 1rem;
@@ -169,8 +176,6 @@ if (!in_array($request_uri, $rotas_validas)) {
             text-align: center; padding: 1.5rem; color: #555; font-size: 0.8rem;
             border-top: 1px solid #333; text-shadow: 0 0 5px rgba(57, 255, 20, 0.3);
         }
-
-        /* MODAL */
         .modal {
             display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0;
             background: var(--modal-bg); backdrop-filter: blur(5px); z-index: 9999;
@@ -194,8 +199,6 @@ if (!in_array($request_uri, $rotas_validas)) {
         .close-modal { color: var(--neon-cyan); font-size: 1.8rem; cursor: pointer; transition: 0.3s; }
         .close-modal:hover { color: #ff0000; text-shadow: 0 0 10px #ff0000; }
         .typing-text { color: var(--neon-green); white-space: pre-wrap; font-family: 'Roboto Mono', monospace; line-height: 1.6; }
-
-        /* LINKS NEON */
         .cert-link, .project-link {
             color: var(--neon-pink) !important; font-weight: bold; text-decoration: none !important;
             cursor: pointer; transition: all 0.3s; text-shadow: 0 0 8px var(--neon-pink);
@@ -203,18 +206,15 @@ if (!in_array($request_uri, $rotas_validas)) {
         .cert-link:hover, .project-link:hover {
             text-shadow: 0 0 15px var(--neon-pink), 0 0 25px var(--neon-pink); animation: glitch 0.3s;
         }
-
         @media (max-width: 768px) {
             .header-text h1 { font-size: 2rem; }
             #ascii-art { font-size: 0.6rem; }
-            .modal-content { padding: 1rem; }
-            #lang-toggle { width: 35px; height: 35px; font-size: 1rem; }
+            #lang-toggle { width: 40px; height: 40px; }
             .loading-title { font-size: 1.8rem; }
         }
     </style>
 </head>
 <body>
-
     <!-- LOADING -->
     <div id="loading-screen">
         <div class="loading-title glitch">SYSTEM BOOT</div>
@@ -227,8 +227,8 @@ if (!in_array($request_uri, $rotas_validas)) {
     <!-- CONTEÚDO -->
     <div id="main-content">
         <header>
-            <div id="lang-toggle" title="Alternar idioma"></div>
-            <div id="ascii-art" class="ascii-art">Loading system...</div>
+            <div id="lang-toggle" title="Alternar idioma (BR/EN)"></div>
+            <div id="ascii-art">Loading system...</div>
             <div class="header-text">
                 <h1 class="glitch">CesarBTakeda</h1>
                 <p class="quote">"Talk is cheap. Show me the code." - Linus Torvalds</p>
@@ -270,7 +270,6 @@ if (!in_array($request_uri, $rotas_validas)) {
                 </ul>
             </section>
 
-            <!-- 10 BUGS BOUNTY -->
             <section id="bug-bounty">
                 <h2 data-en="bugbounty --report">bugbounty --report</h2>
                 <ul>
@@ -313,7 +312,7 @@ if (!in_array($request_uri, $rotas_validas)) {
     </div>
 
     <script>
-        // === LOADING ===
+        // ====================== LOADING ======================
         const loadingScreen = document.getElementById('loading-screen');
         const progressBar = document.getElementById('progress-bar');
         const progressText = document.getElementById('progress-text');
@@ -323,6 +322,7 @@ if (!in_array($request_uri, $rotas_validas)) {
         const interval = 30;
         const steps = duration / interval;
         const increment = 100 / steps;
+
         const loadingInterval = setInterval(() => {
             progress += increment;
             if (progress >= 100) {
@@ -338,11 +338,9 @@ if (!in_array($request_uri, $rotas_validas)) {
             progressText.textContent = Math.round(progress) + '%';
         }, interval);
 
-        function initSite() {
-            loadAscii();
-        }
+        function initSite() { loadAscii(); }
 
-        // === ASCII (INDEPENDENTE) ===
+        // ====================== ASCII ART ======================
         let asciiTypingTimeout = null;
         function loadAscii() {
             const el = document.getElementById('ascii-art');
@@ -371,7 +369,7 @@ if (!in_array($request_uri, $rotas_validas)) {
                 });
         }
 
-        // === MODAL DATA (100% COMPLETO) ===
+        // ====================== MODAL DATA ======================
         const modalData = {
             skill1: { title: "Bancos de Dados", content: "> MySQL\n> PostgreSQL\n> MongoDB\n> SQLite\n> Redis\n\n> Proficiência em design e otimização de BD relacionais e NoSQL.", en: { title: "Databases", content: "> MySQL\n> PostgreSQL\n> MongoDB\n> SQLite\n> Redis\n\n> Proficiency in relational and NoSQL database design and optimization." } },
             skill2: { title: "Sistemas Operacionais", content: "> Debian 12\n> Kali Linux (WSL)\n> Arch Linux\n> BlackArch Linux\n> Windows 11 + WSL\n\n> Experiência em configuração, hardening e troubleshooting.", en: { title: "Operating Systems", content: "> Debian 12\n> Kali Linux (WSL)\n> Arch Linux\n> BlackArch Linux\n> Windows 11 + WSL\n\n> Experience in configuration, hardening, and troubleshooting." } },
@@ -419,41 +417,13 @@ if (!in_array($request_uri, $rotas_validas)) {
             bug4: { title: "Trip.com Bug", content: "> Vulnerabilidade: RCE\n> Detalhes: trip.com vulnerável a exploit RCE de servidor DNS vulnerável, permitindo acesso remoto via configuração dnsnameserver. Versão desatualizada de nginx.\n> Plataforma: HackerOne\n> Data: 29 de Setembro, 2024\n> Status: Informado", en: { title: "Trip.com Bug", content: "> Vulnerability: RCE\n> Details: trip.com vulnerable to DNS server RCE exploit, allowing remote access via dnsnameserver config. Outdated nginx version.\n> Platform: HackerOne\n> Date: September 29, 2024\n> Status: Informed" } },
             bug5: { title: "CacauShow Bug", content: "> Vulnerabilidade: XSS | CWE-79\n> Detalhes: XSS Refletido no campo de busca da Cacau Show. Sem sanitização de JavaScript, permitindo escalada para HTMLi e RCE via fixação de sessão. Gravidade: Média-Alta devido à facilidade de escalação.\n> Plataforma: N/A (Disclosure Direto)\n> Data: 9 de Março, 2025\n> Campo vulnerável: Search Field", en: { title: "CacauShow Bug", content: "> Vulnerability: XSS | CWE-79\n> Details: Reflected XSS in Cacau Show search field. No JavaScript sanitization, allowing escalation to HTMLi and RCE via session fixation. Severity: Medium-High due to ease of escalation.\n> Platform: N/A (Direct Disclosure)\n> Date: March 9, 2025\n> Vulnerable Field: Search Field" } },
             bug6: { title: "Playtika Bug", content: "> Vulnerabilidade: OpenRedirect | CWE-601\n> Detalhes: Open Redirect e banner grabbing no subdomínio bingoblitz.com da Playtika.\n> Plataforma: HackerOne\n> Data: 19 de Março, 2025\n> Status: Reportado", en: { title: "Playtika Bug", content: "> Vulnerability: OpenRedirect | CWE-601\n> Details: Open Redirect and banner grabbing on Playtika's bingoblitz.com subdomain.\n> Platform: HackerOne\n> Date: March 19, 2025\n> Status: Reported" } },
-            bug7: { 
-                title: "Facens Bug", 
-                content: "> Alvo: Facens\n> Vulnerabilidade: IDOR | CWE-639\n> Plataforma: Facens (Interno)\n> Data: Julho de 2025\n> Detalhes: IDOR na API de boleto permitia manipular IDs de pagamento, zerando valores de mensalidade.\n> Impacto: Acesso gratuito a serviços pagos.\n> Status: Reportado e Corrigido", 
-                en: { 
-                    title: "Facens Bug", 
-                    content: "> Target: Facens\n> Vulnerability: IDOR | CWE-639\n> Platform: Facens (Internal)\n> Date: July 2025\n> Details: IDOR in billing API allowed manipulation of payment IDs, zeroing tuition fees.\n> Impact: Free access to paid services.\n> Status: Reported and Fixed" 
-                } 
-            },
-            bug8: { 
-                title: "Facens Bug", 
-                content: "> Alvo: Facens Carreiras\n> Vulnerabilidade: Security Misconfiguration | CWE-611\n> Plataforma: WordPress (Facens)\n> Data: Agosto de 2025\n> Detalhes: Banco de dados completo (backup.zip) exposto publicamente em /wp-content/uploads/.\n> Impacto: Vazamento de dados sensíveis de alunos e professores.\n> Status: Reportado e Removido", 
-                en: { 
-                    title: "Facens Bug", 
-                    content: "> Target: Facens Careers\n> Vulnerability: Security Misconfiguration | CWE-611\n> Platform: WordPress (Facens)\n> Date: August 2025\n> Details: Full database backup (backup.zip) publicly exposed in /wp-content/uploads/.\n> Impact: Leak of sensitive student and faculty data.\n> Status: Reported and Removed" 
-                } 
-            },
-            bug9: { 
-                title: "FarmaPonte Bug", 
-                content: "> Alvo: FarmaPonte\n> Vulnerabilidade: Email Spoofing | CWE-924\n> Plataforma: Email\n> Data: Agosto de 2025\n> Detalhes: API de envio de e-mails permitia spoofing completo do remetente via header injection.\n> Impacto: Envio de e-mails falsos em nome da empresa.\n> Status: Reportado e Corrigido", 
-                en: { 
-                    title: "FarmaPonte Bug", 
-                    content: "> Target: FarmaPonte\n> Vulnerability: Email Spoofing | CWE-924\n> Platform: Email\n> Date: August 2025\n> Details: Email sending API allowed full sender spoofing via header injection.\n> Impact: Sending fake emails on behalf of the company.\n> Status: Reported and Fixed" 
-                } 
-            },
-            bug10: { 
-                title: "Edebe Bug", 
-                content: "> Alvo: Edebe\n> Vulnerabilidade: Stored XSS | CWE-79\n> Plataforma: Estagio (Liga)\n> Data: Novembro de 2025\n> Detalhes: Upload de arquivos XML maliciosos no bucket S3 permitia execução de XSS persistente.\n> Impacto: Scripts armazenados permanentemente e compartilháveis via spam.\n> Status: Reportado e Corrigido", 
-                en: { 
-                    title: "Edebe Bug", 
-                    content: "> Target: Edebe\n> Vulnerability: Stored XSS | CWE-79\n> Platform: Estagio (Liga)\n> Date: November 2025\n> Details: Upload of malicious XML files to S3 bucket allowed persistent XSS execution.\n> Impact: Scripts permanently stored and shareable via spam.\n> Status: Reported and Fixed" 
-                } 
-            }
+            bug7: { title: "Facens Bug", content: "> Alvo: Facens\n> Vulnerabilidade: IDOR | CWE-639\n> Plataforma: Facens (Interno)\n> Data: Julho de 2025\n> Detalhes: IDOR na API de boleto permitia manipular IDs de pagamento, zerando valores de mensalidade.\n> Impacto: Acesso gratuito a serviços pagos.\n> Status: Reportado e Corrigido", en: { title: "Facens Bug", content: "> Target: Facens\n> Vulnerability: IDOR | CWE-639\n> Platform: Facens (Internal)\n> Date: July 2025\n> Details: IDOR in billing API allowed manipulation of payment IDs, zeroing tuition fees.\n> Impact: Free access to paid services.\n> Status: Reported and Fixed" } },
+            bug8: { title: "Facens Bug", content: "> Alvo: Facens Carreiras\n> Vulnerabilidade: Security Misconfiguration | CWE-611\n> Plataforma: WordPress (Facens)\n> Data: Agosto de 2025\n> Detalhes: Banco de dados completo (backup.zip) exposto publicamente em /wp-content/uploads/.\n> Impacto: Vazamento de dados sensíveis de alunos e professores.\n> Status: Reportado e Removido", en: { title: "Facens Bug", content: "> Target: Facens Careers\n> Vulnerability: Security Misconfiguration | CWE-611\n> Platform: WordPress (Facens)\n> Date: August 2025\n> Details: Full database backup (backup.zip) publicly exposed in /wp-content/uploads/.\n> Impact: Leak of sensitive student and faculty data.\n> Status: Reported and Removed" } },
+            bug9: { title: "FarmaPonte Bug", content: "> Alvo: FarmaPonte\n> Vulnerabilidade: Email Spoofing | CWE-924\n> Plataforma: Email\n> Data: Agosto de 2025\n> Detalhes: API de envio de e-mails permitia spoofing completo do remetente via header injection.\n> Impacto: Envio de e-mails falsos em nome da empresa.\n> Status: Reportado e Corrigido", en: { title: "FarmaPonte Bug", content: "> Target: FarmaPonte\n> Vulnerability: Email Spoofing | CWE-924\n> Platform: Email\n> Date: August 2025\n> Details: Email sending API allowed full sender spoofing via header injection.\n> Impact: Sending fake emails on behalf of the company.\n> Status: Reported and Fixed" } },
+            bug10: { title: "Edebe Bug", content: "> Alvo: Edebe\n> Vulnerabilidade: Stored XSS | CWE-79\n> Plataforma: Estagio (Liga)\n> Data: Novembro de 2025\n> Detalhes: Upload de arquivos XML maliciosos no bucket S3 permitia execução de XSS persistente.\n> Impacto: Scripts armazenados permanentemente e compartilháveis via spam.\n> Status: Reportado e Corrigido", en: { title: "Edebe Bug", content: "> Target: Edebe\n> Vulnerability: Stored XSS | CWE-79\n> Platform: Estagio (Liga)\n> Date: November 2025\n> Details: Upload of malicious XML files to S3 bucket allowed persistent XSS execution.\n> Impact: Scripts permanently stored and shareable via spam.\n> Status: Reported and Fixed" } }
         };
 
-        // === MODAL SYSTEM (INDEPENDENTE) ===
+        // ====================== MODAL SYSTEM ======================
         const modal = document.getElementById('modal');
         const modalTitle = document.getElementById('modal-title');
         const modalBody = document.getElementById('modal-body');
@@ -498,8 +468,8 @@ if (!in_array($request_uri, $rotas_validas)) {
                     modalTypingTimeout = setTimeout(typeNext, 20);
                 } else {
                     if (line.link) {
-                        const text = isEn ? '[view cert]' : '[ver cert]';
-                        modalBody.insertAdjacentHTML('beforeend', ` <a href="${line.link}" target="_blank" class="cert-link">${text}</a>`);
+                        const txt = isEn ? '[view cert]' : '[ver cert]';
+                        modalBody.insertAdjacentHTML('beforeend', ` <a href="${line.link}" target="_blank" class="cert-link">${txt}</a>`);
                     }
                     modalBody.insertAdjacentText('beforeend', '\n');
                     lineIndex++; charIndex = 0;
@@ -516,8 +486,8 @@ if (!in_array($request_uri, $rotas_validas)) {
                     modalBody.insertAdjacentText('beforeend', text[i++]);
                     modalTypingTimeout = setTimeout(type, 20);
                 } else if (modal.classList.contains('active') && link) {
-                    const text = isEn ? '[project link]' : '[link do projeto]';
-                    modalBody.insertAdjacentHTML('beforeend', `\n\n> <a href="${link}" target="_blank" class="project-link">${text}</a>`);
+                    const txt = isEn ? '[project link]' : '[link do projeto]';
+                    modalBody.insertAdjacentHTML('beforeend', `\n\n> <a href="${link}" target="_blank" class="project-link">${txt}</a>`);
                 }
             }
             modalTypingTimeout = setTimeout(type, 100);
@@ -527,33 +497,42 @@ if (!in_array($request_uri, $rotas_validas)) {
             el.addEventListener('click', e => { e.stopPropagation(); openModal(el.dataset.modal); });
         });
 
-        closeBtn.addEventListener('click', () => { 
-            if (modalTypingTimeout) clearTimeout(modalTypingTimeout); 
-            modal.classList.remove('active'); 
-        });
-        modal.addEventListener('click', e => { 
-            if (e.target === modal) { 
-                if (modalTypingTimeout) clearTimeout(modalTypingTimeout); 
-                modal.classList.remove('active'); 
-            } 
-        });
-        document.addEventListener('keydown', e => { 
-            if (e.key === 'Escape') { 
-                if (modalTypingTimeout) clearTimeout(modalTypingTimeout); 
-                modal.classList.remove('active'); 
-            } 
+        closeBtn.addEventListener('click', () => {
+            if (modalTypingTimeout) clearTimeout(modalTypingTimeout);
+            modal.classList.remove('active');
         });
 
-        // === LANGUAGE TOGGLE ===
+        modal.addEventListener('click', e => {
+            if (e.target === modal) {
+                if (modalTypingTimeout) clearTimeout(modalTypingTimeout);
+                modal.classList.remove('active');
+            }
+        });
+
+        document.addEventListener('keydown', e => {
+            if (e.key === 'Escape') {
+                if (modalTypingTimeout) clearTimeout(modalTypingTimeout);
+                modal.classList.remove('active');
+            }
+        });
+
+        // ====================== LANGUAGE TOGGLE ======================
         const langToggle = document.getElementById('lang-toggle');
         let isEnglish = false;
+
         langToggle.addEventListener('click', () => {
             isEnglish = !isEnglish;
             document.body.classList.toggle('en', isEnglish);
+
             document.querySelectorAll('[data-en]').forEach(el => {
-                if (isEnglish) { el.dataset.pt = el.textContent; el.textContent = el.dataset.en; }
-                else { el.textContent = el.dataset.pt || el.dataset.en; }
+                if (isEnglish) {
+                    el.dataset.pt = el.textContent;
+                    el.textContent = el.dataset.en;
+                } else {
+                    el.textContent = el.dataset.pt || el.dataset.en;
+                }
             });
+
             document.querySelectorAll('.clickable').forEach(el => {
                 const item = modalData[el.dataset.modal];
                 if (item) {
